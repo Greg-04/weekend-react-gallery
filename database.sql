@@ -16,3 +16,5 @@ VALUES
 ('images/dachsand.webp', 'Weiner Dog', 'Breed of my dog');
   
 SELECT * FROM "gallery" ORDER BY "id" ASC;
+
+UPDATE "gallery" SET "likes" = "likes" + '1' WHERE "id" = $1;
