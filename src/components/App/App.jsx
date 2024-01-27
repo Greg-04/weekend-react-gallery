@@ -1,3 +1,5 @@
+import GalleryList from '../GalleryList/GalleryList';
+
 function App() {
   return (
     <div>
@@ -6,11 +8,7 @@ function App() {
       </header>
 
       <p>The gallery goes here!</p>
-      <img src="images/goat_small.jpg" />
-      <img src="images/coffee.webp" />
-      <img src="images/DallasCowboysIMG.avif" />
-      <img src="images/goldendoodle.png" />
-      <img src="images/dachsand.webp" />
+      <GalleryList data-testid="galleryList" />
     </div>
   );
 }
