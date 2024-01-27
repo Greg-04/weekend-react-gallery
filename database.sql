@@ -15,3 +15,4 @@ VALUES
 ('images/goldendoodle.png', 'Golden Doodle', 'Breed of my dog'),
 ('images/dachsand.webp', 'Weiner Dog', 'Breed of my dog');
   
+SELECT * FROM "gallery" ORDER BY "id" ASC;
