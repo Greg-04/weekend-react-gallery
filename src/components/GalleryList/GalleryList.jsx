@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import GalleryItem from './GalleryItem/GalleryItem';
+import GalleryItem from '../GalleryItem/GalleryItem';
 import axios from 'axios';
-import './GalleryList.css';
 
 const fetchGalleryList = () => {
   return axios.get('/api/gallery');
@@ -34,25 +33,15 @@ function GalleryList() {
   }, []);
 
   return (
-    <main>
+    <main data-testid="galleryList">
       <h2>Gallery List</h2>
-      {galleryList.map((galleryData, dataIndex) => {
-        return (
-          <div key={dataIndex}>
-            <h3>Title: {galleryData.title}</h3>
-            <div>
-              <img
-                className="gallery-image"
-                src={galleryData.url}
-                alt={galleryData.title}
-              />
-            </div>
-            <p>{galleryData.description}</p>
-            <button>Love it!</button>
-            <span> {galleryData.likes} </span>
-          </div>
-        );
-      })}
+      {galleryList.map((galleryData, dataIndex) => (
+        <GalleryItem
+          data-testid="galleryItem"
+          key={dataIndex}
+          galleryData={galleryData}
+        />
+      ))}
     </main>
   );
 }
