@@ -40,6 +40,7 @@ function GalleryList() {
           data-testid="galleryItem"
           key={dataIndex}
           galleryData={galleryData}
+          refreshGalleryList={() => refreshGalleryList()}
         />
       ))}
     </main>

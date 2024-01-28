@@ -1,11 +1,30 @@
 import './GalleryItem.css';
 import { useState } from 'react';
+import axios from 'axios';
 
-function GalleryItem({ galleryData }) {
+function GalleryItem({ galleryData, refreshGalleryList }) {
+  //setting state for description to boolean
   const [toggleDescription, setToggleDescription] = useState(true);
 
+  //toggle button function
   const handleToggle = () => {
     setToggleDescription(!toggleDescription);
+  };
+
+  //Axios call
+  const addLikeCall = (taskId) => {
+    return axios.put(`/api/gallery/like/${taskId}`);
+  };
+
+  //handle to add like
+  const addLikeHandle = (id) => {
+    addLikeCall(id)
+      .then((response) => {
+        refreshGalleryList();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   return (
@@ -28,9 +47,13 @@ function GalleryItem({ galleryData }) {
         <button data-testid="toggle" onClick={handleToggle}>
           Click for Description!
         </button>
-        <button data-testid="like">Love it!</button>
+        <button
+          data-testid="like"
+          onClick={(event) => addLikeHandle(galleryData.id)}>
+          Love it!
+        </button>
       </div>
-      <div data-testid="like"> {galleryData.likes} people love this!</div>
+      <div>{galleryData.likes} people love this!</div>
     </div>
   );
 }
